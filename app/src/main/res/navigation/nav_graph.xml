@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/moodEntryFragment">
 
+    <fragment
+        android:id="@+id/moodEntryFragment"
+        android:name="com.example.moodtracker_zadanie.MoodEntryFragment"
+        android:label="Nowy wpis"
+        tools:layout="@layout/fragment_mood_entry">
+        <action
+            android:id="@+id/action_moodEntryFragment_to_moodHistoryFragment"
+            app:destination="@id/moodHistoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/moodHistoryFragment"
+        android:name="com.example.moodtracker_zadanie.MoodHistoryFragment"
+        android:label="Historia"
+        tools:layout="@layout/fragment_mood_history" ></fragment>
 </navigation>
