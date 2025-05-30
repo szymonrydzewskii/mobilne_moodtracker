@@ -18,5 +18,25 @@
         android:id="@+id/moodHistoryFragment"
         android:name="com.example.moodtracker_zadanie.MoodHistoryFragment"
         android:label="Historia"
-        tools:layout="@layout/fragment_mood_history" ></fragment>
+        tools:layout="@layout/fragment_mood_history" >
+        <action
+            android:id="@+id/action_moodHistoryFragment_to_moodDetailsFragment"
+            app:destination="@+id/moodDetailsFragment"/>
+        <action
+            android:id="@+id/action_moodHistoryFragment_to_moodEntryFragment"
+            app:destination="@+id/moodEntryFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/moodDetailsFragment"
+        android:name="com.example.moodtracker_zadanie.MoodDetailsFragment"
+        android:label="Szczegóły nastroju"
+        tools:layout="@layout/fragment_mood_details" >
+        <action
+            android:id="@+id/action_moodDetailsFragment_to_moodHistoryFragment"
+            app:destination="@+id/moodHistoryFragment"/>
+        <argument
+            android:name="moodEntry"
+            app:argType="com.example.moodtracker_zadanie.MoodEntry" />
+    </fragment>
 </navigation>

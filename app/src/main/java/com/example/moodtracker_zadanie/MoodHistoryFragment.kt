@@ -5,6 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.moodtracker_zadanie.adapter.MoodAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,6 +41,27 @@ class MoodHistoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mood_history, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.mood_history_recyclerview)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        val moodList = FakeMoodRepository.getAllMoods()
+        val adapter = MoodAdapter(moodList, object : OnMoodClickListener {
+            override fun onMoodClick(moodEntry: MoodEntry) {
+                val action = MoodHistoryFragmentDirections.actionMoodHistoryFragmentToMoodDetailsFragment(moodEntry)
+                findNavController().navigate(action)
+            }
+        })
+        recyclerView.adapter = adapter
+
+        val addButton = view.findViewById<FloatingActionButton>(R.id.dodaj_wpis_button)
+        addButton.setOnClickListener {
+            findNavController().navigate(R.id.action_moodHistoryFragment_to_moodEntryFragment)
+        }
     }
 
     companion object {
