@@ -39,4 +39,13 @@
             android:name="moodEntry"
             app:argType="com.example.moodtracker_zadanie.MoodEntry" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.moodtracker_zadanie.SettingsFragment"
+        android:label="Ustawienia"
+        tools:layout="@layout/fragment_settings" >
+        <action
+            android:id="@+id/action_settingsFragment_to_moodEntryFragment"
+            app:destination="@+id/moodEntryFragment"/>
+    </fragment>
 </navigation>
